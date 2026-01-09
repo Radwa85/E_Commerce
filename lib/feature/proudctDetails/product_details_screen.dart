@@ -18,21 +18,6 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  late Product product;
-
-  @override
-  void initState() {
-    super.initState();
-    product = Product(
-      name: 'Product Name',
-      numberOfReviews: 5,
-      rating: 4.5,
-      price: 19.99,
-      imageUrl: 'https://picsum.photos/600/300',
-      description: 'Product Description',
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,12 +31,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             Image.network(
               height: MediaQuery.of(context).size.height * 0.4,
               width: double.infinity,
-              product.imageUrl,
+              widget.product.imageUrl,
               fit: BoxFit.cover,
             ),
             SizedBox(height: 12),
             Text(
-              product.name,
+              widget.product.name,
               style: GoogleFonts.dmSans(
                 fontSize: 24,
                 fontWeight: FontWeight.w600,
@@ -65,7 +50,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 SvgPicture.asset(AppAssets.iconStar),
                 SizedBox(width: 6),
                 Text(
-                  "${product.rating}/5",
+                  "${widget.product.rating}/5",
                   style: GoogleFonts.readexPro(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -76,7 +61,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ),
                 SizedBox(width: 4),
                 Text(
-                  "(${product.numberOfReviews} reviews)",
+                  "(${widget.product.numberOfReviews} reviews)",
                   style: GoogleFonts.readexPro(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -88,7 +73,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
             SizedBox(width: 13),
             Text(
-              product.description,
+              widget.product.description,
               style: GoogleFonts.dmSans(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -100,7 +85,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
       ),
       bottomNavigationBar: ProductDetailsBottomBar(
-        productPrice: product.price,
+        productPrice: widget.product.price,
         onAddToCartClick: () => {
           // TODO Handle add to cart
         },
