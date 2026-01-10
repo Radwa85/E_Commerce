@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_strings.dart';
+import '../../../core/widgets/button.dart';
 
 class ProductDetailsBottomBar extends StatelessWidget {
   final double productPrice;
@@ -53,29 +54,12 @@ class ProductDetailsBottomBar extends StatelessWidget {
             ],
           ),
           SizedBox(width: 16),
-          GestureDetector(
-            onTap: onAddToCartClick,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: AppColors.primary,
-              ),
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 58),
-              child: Row(
-                children: [
-                  SvgPicture.asset(AppAssets.iconBag),
-                  const SizedBox(width: 10),
-                  Text(
-                    AppStrings.addToCart,
-                    style: GoogleFonts.readexPro(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      height: 1.4,
-                      color: AppColors.textLight,
-                    ),
-                  ),
-                ],
-              ),
+          Expanded(
+            child: AppButton(
+              onPressed: onAddToCartClick,
+              text: AppStrings.addToCart,
+              backgroundColor: AppColors.primary,
+              icon: SvgPicture.asset(AppAssets.iconBag),
             ),
           ),
         ],
