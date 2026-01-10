@@ -1,11 +1,11 @@
 import 'package:e_commerce/core/constants/app_colors.dart';
-import 'package:e_commerce/domain/repository/address_repository.dart';
+import 'package:e_commerce/domain/repositories/address_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/constants/app_strings.dart';
 import '../../core/widgets/app_bar.dart';
-import '../../domain/entity/address.dart';
+import '../../domain/entities/address.dart';
 import 'components/address_card.dart';
 
 class AddressScreen extends StatefulWidget {

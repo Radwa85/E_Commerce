@@ -1,5 +1,5 @@
 
-import '../entity/address.dart';
+import '../entities/address.dart';
 
 abstract class AddressRepository {
   List<Address> fetchAddresses();
