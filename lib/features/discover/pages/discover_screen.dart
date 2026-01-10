@@ -2,6 +2,7 @@ import 'package:e_commerce/core/constants/app_assets.dart';
 import 'package:e_commerce/core/constants/app_colors.dart';
 import 'package:e_commerce/core/constants/app_dimensions.dart';
 import 'package:e_commerce/core/constants/app_strings.dart';
+import 'package:e_commerce/data/repositories/product_repository_impl.dart';
 import 'package:e_commerce/features/discover/manager/discover_controller.dart';
 import 'package:e_commerce/features/discover/widgets/bottom_nav_bar.dart';
 import 'package:e_commerce/features/discover/widgets/category_filter_list.dart';
@@ -19,13 +20,20 @@ class DiscoverScreen extends StatefulWidget {
 }
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
-  final DiscoverController _controller = DiscoverController();
+  late final DiscoverController _controller;
   int _currentNavIndex = 0;
 
   @override
   void initState() {
     super.initState();
+    _controller = DiscoverController(repository: ProductRepositoryImpl());
     _controller.loadData();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -90,34 +98,45 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         CategoryFilterList(
                           categories: _controller.categories,
                           onCategorySelected: _controller.selectCategory,
+                          selectedCategoryId: _controller.selectedCategoryId,
                         ),
                         const SizedBox(height: AppDimensions.paddingL),
                         
                         Expanded(
-                          child: GridView.builder(
-                            itemCount: _controller.products.length,
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 0.72,
-                              crossAxisSpacing: AppDimensions.spacingL,
-                              mainAxisSpacing: AppDimensions.spacingL,
-                            ),
-                            itemBuilder: (context, index) {
-                              return ProductCard(
-                                product: _controller.products[index],
-                                onTap: () {
-                                 /* Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ProductDetailsScreen(
-                                        product: _controller.products[index],
-                                      ),
+                          child: _controller.products.isEmpty
+                              ? Center(
+                                  child: Text(
+                                    'No products found',
+                                    style: GoogleFonts.readexPro(
+                                      fontSize: 18,
+                                      color: AppColors.textInput,
                                     ),
-                                  );*/
-                                },
-                              );
-                            },
-                          ),
+                                  ),
+                                )
+                              : GridView.builder(
+                                  itemCount: _controller.products.length,
+                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 0.72,
+                                    crossAxisSpacing: AppDimensions.spacingL,
+                                    mainAxisSpacing: AppDimensions.spacingL,
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    return ProductCard(
+                                      product: _controller.products[index],
+                                      onTap: () {
+                                        /* Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => ProductDetailsScreen(
+                                              product: _controller.products[index],
+                                            ),
+                                          ),
+                                        );*/
+                                      },
+                                    );
+                                  },
+                                ),
                         ),
                       ],
                     ),

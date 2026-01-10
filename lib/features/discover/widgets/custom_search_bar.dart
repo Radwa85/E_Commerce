@@ -1,5 +1,6 @@
 import 'package:e_commerce/core/constants/app_assets.dart';
 import 'package:e_commerce/core/constants/app_colors.dart';
+import 'package:e_commerce/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -19,7 +20,7 @@ class CustomSearchBar extends StatelessWidget {
       child: TextField(
         onChanged: onSearch,
         decoration: InputDecoration(
-          hintText: 'Search for clothes...',
+          hintText: AppStrings.searchHint,
           hintStyle: const TextStyle(
             color: AppColors.textInput,
             fontSize: 16,

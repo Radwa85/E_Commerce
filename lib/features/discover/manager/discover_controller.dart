@@ -5,17 +5,18 @@ import 'package:e_commerce/domain/repositories/product_repository.dart';
 import 'package:flutter/material.dart';
 
 class DiscoverController extends ChangeNotifier {
+  static const String allCategoryId = '1';
   final ProductRepository _repository;
 
-  DiscoverController({ProductRepository? repository})
-      : _repository = repository ?? ProductRepositoryImpl();
+  DiscoverController({required ProductRepository repository})
+      : _repository = repository;
 
   List<Category> _categories = [];
   List<Product> _allProducts = [];
   List<Product> _filteredProducts = [];
   bool _isLoading = false;
   String _searchQuery = '';
-  String _selectedCategoryId = '1';
+  String _selectedCategoryId = allCategoryId;
 
   List<Category> get categories => _categories;
   List<Product> get products => _filteredProducts;
@@ -45,11 +46,6 @@ class DiscoverController extends ChangeNotifier {
     if (_selectedCategoryId == categoryId) return;
     
     _selectedCategoryId = categoryId;
-    
-    _categories = _categories.map((cat) {
-      return cat.copyWith(isSelected: cat.id == categoryId);
-    }).toList();
-    
     _applyFilters();
     notifyListeners();
   }
@@ -62,7 +58,7 @@ class DiscoverController extends ChangeNotifier {
 
   void _applyFilters() {
     _filteredProducts = _allProducts.where((product) {
-      final matchesCategory = _selectedCategoryId == '1' ||
+      final matchesCategory = _selectedCategoryId == allCategoryId ||
           product.categoryId == _selectedCategoryId;
       
       final matchesSearch = product.name.toLowerCase().contains(_searchQuery.toLowerCase());

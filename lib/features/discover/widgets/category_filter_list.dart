@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class CategoryFilterList extends StatelessWidget {
   final List<Category> categories;
   final Function(String) onCategorySelected;
+  final String selectedCategoryId;
 
   const CategoryFilterList({
     super.key,
     required this.categories,
     required this.onCategorySelected,
+    required this.selectedCategoryId,
   });
 
   @override
@@ -18,7 +20,7 @@ class CategoryFilterList extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: categories.map((category) {
-          final isSelected = category.isSelected;
+          final isSelected = category.id == selectedCategoryId;
           return Padding(
             padding: const EdgeInsets.only(right: 16),
             child: GestureDetector(

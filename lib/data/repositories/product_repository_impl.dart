@@ -8,7 +8,7 @@ class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<List<Category>> getCategories() async {
     return [
-      const Category(id: '1', name: 'All', isSelected: true),
+      const Category(id: '1', name: 'All'),
       const Category(id: '2', name: 'Tshirts'),
       const Category(id: '3', name: 'Jeans'),
       const Category(id: '4', name: 'Shoes'),
