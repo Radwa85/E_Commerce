@@ -1,7 +1,7 @@
 import 'package:uuid/uuid.dart';
 
 class Address {
-  final Uuid id = Uuid();
+  final String id = Uuid().v4();
   final String title;
   final String description;
   final bool isDefault;
