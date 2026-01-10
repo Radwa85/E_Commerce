@@ -19,51 +19,66 @@ class AddressScreen extends StatefulWidget {
 
 class _AddressScreenState extends State<AddressScreen> {
   late List<Address> addresses;
+  late bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    addresses = widget.addressRepository.fetchAddresses();
+    _loadAddresses();
+  }
+
+  Future<void> _loadAddresses() async {
+    addresses = await widget.addressRepository.fetchAddresses();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: AppStrings.address),
-      body: Container(
-        color: AppColors.background,
-        padding: EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Divider(color: AppColors.inputBorder),
-            const SizedBox(height: 20),
-            Text(
-              AppStrings.savedAddress,
-              style: GoogleFonts.readexPro(
-                fontWeight: FontWeight.w600,
-                color: AppColors.textPrimary,
-                fontSize: 16,
-                height: 1.4,
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : Container(
+                color: AppColors.background,
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Divider(color: AppColors.inputBorder),
+                    const SizedBox(height: 20),
+                    Text(
+                      AppStrings.savedAddress,
+                      style: GoogleFonts.readexPro(
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textPrimary,
+                        fontSize: 16,
+                        height: 1.4,
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: addresses.length,
+                        itemBuilder: (context, index) {
+                          final address = addresses[index];
+                          return Padding(
+                            padding: EdgeInsets.only(bottom: 12),
+                            child: AddressCard(
+                              title: address.title,
+                              description: address.description,
+                              isDefault: address.isDefault,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 14),
-            Expanded(
-                child: ListView.builder(
-              itemCount: addresses.length,
-              itemBuilder: (context, index) {
-                final address = addresses[index];
-                return Padding(
-                    padding: EdgeInsets.only(bottom: 12),
-                    child: AddressCard(
-                      title: address.title,
-                      description: address.description,
-                      isDefault: address.isDefault,
-                    ));
-              },
-            ))
-          ],
-        ),
       ),
     );
   }
