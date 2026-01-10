@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../core/constants/app_assets.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/widgets/app_bar.dart';
-import '../../domain/entity/product.dart';
+import '../../domain/entities/product.dart';
 import 'components/product_details_bottom_bar.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
@@ -28,7 +28,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
+            Image.asset(
               height: MediaQuery.of(context).size.height * 0.4,
               width: double.infinity,
               widget.product.imageUrl,
