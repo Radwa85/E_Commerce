@@ -23,10 +23,7 @@ class ProductDetailsBottomBar extends StatelessWidget {
       height: 100,
       padding: EdgeInsets.only(top: 20, bottom: 10, left: 24, right: 24),
       decoration: BoxDecoration(
-        border: Border.symmetric(
-          horizontal: BorderSide.none,
-          vertical: BorderSide(color: AppColors.textSecondary),
-        ),
+        border: Border(top: BorderSide(color: AppColors.inputBorder, width: 1)),
       ),
       child: Row(
         children: [

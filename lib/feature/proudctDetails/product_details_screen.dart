@@ -71,7 +71,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ),
               ],
             ),
-            SizedBox(width: 13),
+            SizedBox(height: 13),
             Text(
               widget.product.description,
               style: GoogleFonts.dmSans(
