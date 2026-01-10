@@ -1,4 +1,7 @@
+import 'package:uuid/uuid.dart';
+
 class Product {
+  final String id = Uuid().v4();
   final String name;
   final int numberOfReviews;
   final double rating;
