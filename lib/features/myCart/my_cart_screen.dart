@@ -37,7 +37,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: AppStrings.myCart,showBackButton: false),
+      appBar: CustomAppBar(title: AppStrings.myCart, showBackButton: false),
       body: SafeArea(
         child: AnimatedBuilder(
           animation: _controller,
@@ -46,59 +46,24 @@ class _MyCartScreenState extends State<MyCartScreen> {
               return const Center(child: CircularProgressIndicator());
             }
 
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: CustomScrollView(
-                slivers: [
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                      final product = _controller.products[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 14),
-                        child: CartProductCard(
-                          product: product,
-                          count: product.count,
-                          onClickPlus: () => _controller.incrementCount(index),
-                          onClickMinus: () => _controller.decrementCount(index),
-                        ),
-                      );
-                    }, childCount: _controller.products.length),
-                  ),
-
-                  SliverToBoxAdapter(child: SizedBox(height: 24)),
-
-                  SliverToBoxAdapter(
-                    child: cartDetail(
-                      AppStrings.subTotal,
-                      _controller.subTotal.toString(),
-                    ),
-                  ),
-                  SliverToBoxAdapter(child: SizedBox(height: 16)),
-                  SliverToBoxAdapter(
-                    child: cartDetail(
-                      AppStrings.vat,
-                      _controller.vat.toString(),
-                    ),
-                  ),
-                  SliverToBoxAdapter(child: SizedBox(height: 16)),
-                  SliverToBoxAdapter(
-                    child: cartDetail(
-                      AppStrings.shippingFee,
-                      _controller.shippingFee.toString(),
-                    ),
-                  ),
-                  SliverToBoxAdapter(child: SizedBox(height: 16)),
-                  SliverToBoxAdapter(
-                    child: Divider(color: AppColors.inputBorder),
-                  ),
-                  SliverToBoxAdapter(child: SizedBox(height: 16)),
-                  SliverToBoxAdapter(
-                    child: cartDetail(
-                      AppStrings.total,
-                      _controller.total.toString(),
-                    ),
-                  ),
-                ],
+            return Container(
+              padding: EdgeInsetsGeometry.symmetric(horizontal: 24),
+              child: Expanded(
+                child: ListView.builder(
+                  itemCount: _controller.products.length,
+                  itemBuilder: (context, index) {
+                    final product = _controller.products[index];
+                    return Padding(
+                      padding: EdgeInsetsGeometry.only(bottom: 14),
+                      child: CartProductCard(
+                        product: product,
+                        count: 1,
+                        onClickPlus: () => _controller.incrementCount(index),
+                        onClickMinus: () => _controller.decrementCount(index),
+                      ),
+                    );
+                  },
+                ),
               ),
             );
           },
@@ -107,12 +72,31 @@ class _MyCartScreenState extends State<MyCartScreen> {
       bottomNavigationBar: Padding(
         padding: EdgeInsetsGeometry.symmetric(horizontal: 25, vertical: 20),
         child: Expanded(
-          child: AppButton(
-            onPressed: () => {},
-            text: AppStrings.goToCheckout,
-            backgroundColor: AppColors.primary,
-            iconAtEnd: true,
-            icon: SvgPicture.asset(AppAssets.iconArrowRight),
+          child: Column(
+            children: [
+              SizedBox(height: 24),
+              cartDetail(AppStrings.subTotal, _controller.subTotal.toString()),
+              SizedBox(height: 16),
+              cartDetail(AppStrings.vat, _controller.vat.toString()),
+              SizedBox(height: 16),
+              cartDetail(
+                AppStrings.shippingFee,
+                _controller.shippingFee.toString(),
+              ),
+
+              SizedBox(height: 16),
+              Divider(color: AppColors.inputBorder),
+              SizedBox(height: 16),
+              cartDetail(AppStrings.total, _controller.total.toString()),
+              SizedBox(height: 16),
+              AppButton(
+                onPressed: () => {},
+                text: AppStrings.goToCheckout,
+                backgroundColor: AppColors.primary,
+                iconAtEnd: true,
+                icon: SvgPicture.asset(AppAssets.iconArrowRight),
+              ),
+            ],
           ),
         ),
       ),

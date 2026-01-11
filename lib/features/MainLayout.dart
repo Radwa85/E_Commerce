@@ -1,5 +1,3 @@
-import 'package:e_commerce/data/repositories/address_repository_impl.dart';
-import 'package:e_commerce/domain/repositories/address_repository.dart';
 import 'package:e_commerce/features/address/address_screen.dart';
 import 'package:flutter/material.dart';
 
