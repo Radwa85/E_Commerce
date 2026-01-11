@@ -23,7 +23,6 @@ class DiscoverScreen extends StatefulWidget {
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
   late final DiscoverController _controller;
-  int _currentNavIndex = 0;
 
   @override
   void initState() {
@@ -143,14 +142,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       ],
                     ),
                   ),
-                ),
-                BottomNavBar(
-                  currentIndex: _currentNavIndex,
-                  onTap: (index) {
-                    setState(() {
-                      _currentNavIndex = index;
-                    });
-                  },
                 ),
               ],
             );
