@@ -8,6 +8,8 @@ import 'package:e_commerce/features/discover/pages/discover_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../MainLayout.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -82,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DiscoverScreen()),
+                                builder: (context) => const MainLayout()),
                           );
                         },
                       ),

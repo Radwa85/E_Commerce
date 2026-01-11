@@ -25,6 +25,7 @@ class ProductRepositoryImpl implements ProductRepository {
         description: 'Comfortable blue running shoes',
         price: 1190,
         imageUrl: AppAssets.shoesBlue,
+        size: 'L',
         categoryId: '4',
         rating: 4.5,
         numberOfReviews: 100,
@@ -34,6 +35,7 @@ class ProductRepositoryImpl implements ProductRepository {
         name: 'Fit Polo T Shirt',
         description: 'Classic blue polo t-shirt',
         price: 1100,
+        size: 'M',
         imageUrl: AppAssets.tshirtBlue,
         categoryId: '2',
         rating: 4.2,
@@ -44,6 +46,7 @@ class ProductRepositoryImpl implements ProductRepository {
         name: 'Regular Fit Black',
         description: 'Standard fit blue t-shirt',
         price: 1690,
+        size: 'S',
         imageUrl: AppAssets.tshirtBlue, // Reusing asset as placeholder for now
         categoryId: '2',
         rating: 4.8,
@@ -54,6 +57,7 @@ class ProductRepositoryImpl implements ProductRepository {
         name: 'Regular Fit V-Neck',
         description: 'V-neck style shoe', // Description matches title/image logic mismatch in screenshot
         price: 1290,
+        size: 'M',
         imageUrl: AppAssets.shoesBlue, // Reusing asset
         categoryId: '4',
         rating: 4.3,
@@ -64,6 +68,7 @@ class ProductRepositoryImpl implements ProductRepository {
         name: 'Dark Blue T-Shirt',
         description: 'Dark blue specialized t-shirt',
         price: 1350,
+        size: 'L',
         imageUrl: AppAssets.tshirtBlue,
         categoryId: '2',
          rating: 4.3,

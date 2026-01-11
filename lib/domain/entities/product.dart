@@ -4,9 +4,11 @@ class Product {
   final String description;
   final double price;
   final double rating;
+  final String size;
   final String imageUrl;
   final String categoryId;
   final int numberOfReviews;
+  final int count;
 
 
   const Product({
@@ -14,9 +16,11 @@ class Product {
     required this.name,
     required this.description,
     required this.price,
+    required this.size,
     required this.imageUrl,
     required this.categoryId,
     required this.rating,
     required this.numberOfReviews,
+    this.count = 0,
   });
 }
