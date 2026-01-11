@@ -8,16 +8,11 @@ import '../../core/widgets/app_bar.dart';
 import '../../domain/entities/product.dart';
 import 'components/product_details_bottom_bar.dart';
 
-class ProductDetailsScreen extends StatefulWidget {
+class ProductDetailsScreen extends StatelessWidget {
   final Product product;
 
   const ProductDetailsScreen({super.key, required this.product});
 
-  @override
-  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
-}
-
-class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +26,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             Image.asset(
               height: MediaQuery.of(context).size.height * 0.4,
               width: double.infinity,
-              widget.product.imageUrl,
+              product.imageUrl,
               fit: BoxFit.cover,
             ),
             SizedBox(height: 12),
             Text(
-              widget.product.name,
+              product.name,
               style: GoogleFonts.dmSans(
                 fontSize: 24,
                 fontWeight: FontWeight.w600,
@@ -50,7 +45,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 SvgPicture.asset(AppAssets.iconStar),
                 SizedBox(width: 6),
                 Text(
-                  "${widget.product.rating}/5",
+                  "${product.rating}/5",
                   style: GoogleFonts.readexPro(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -61,7 +56,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ),
                 SizedBox(width: 4),
                 Text(
-                  "(${widget.product.numberOfReviews} reviews)",
+                  "(${product.numberOfReviews} reviews)",
                   style: GoogleFonts.readexPro(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -73,7 +68,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
             SizedBox(height: 13),
             Text(
-              widget.product.description,
+              product.description,
               style: GoogleFonts.dmSans(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -85,7 +80,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
       ),
       bottomNavigationBar: ProductDetailsBottomBar(
-        productPrice: widget.product.price,
+        productPrice: product.price,
         onAddToCartClick: () => {
           // TODO Handle add to cart
         },
