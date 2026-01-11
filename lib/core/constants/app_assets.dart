@@ -27,4 +27,5 @@ abstract class AppAssets {
   static const String iconVisibilityOff = '${_iconsPath}eye-off.svg';
   static const String iconChevronRight = '${_iconsPath}chevron_right.svg';
   static const String iconWarning = '${_iconsPath}Warning.svg';
+  static const String iconBag = '${_iconsPath}Bag.svg';
 }

@@ -26,6 +26,8 @@ class ProductRepositoryImpl implements ProductRepository {
         price: 1190,
         imageUrl: AppAssets.shoesBlue,
         categoryId: '4',
+        rating: 4.5,
+        numberOfReviews: 100,
       ),
       const Product(
         id: '2',
@@ -34,6 +36,8 @@ class ProductRepositoryImpl implements ProductRepository {
         price: 1100,
         imageUrl: AppAssets.tshirtBlue,
         categoryId: '2',
+        rating: 4.2,
+        numberOfReviews: 50,
       ),
       const Product(
         id: '3',
@@ -42,6 +46,8 @@ class ProductRepositoryImpl implements ProductRepository {
         price: 1690,
         imageUrl: AppAssets.tshirtBlue, // Reusing asset as placeholder for now
         categoryId: '2',
+        rating: 4.8,
+        numberOfReviews: 200,
       ),
       const Product(
         id: '4',
@@ -50,6 +56,8 @@ class ProductRepositoryImpl implements ProductRepository {
         price: 1290,
         imageUrl: AppAssets.shoesBlue, // Reusing asset
         categoryId: '4',
+        rating: 4.3,
+        numberOfReviews: 80,
       ),
        const Product(
         id: '5',
@@ -58,6 +66,8 @@ class ProductRepositoryImpl implements ProductRepository {
         price: 1350,
         imageUrl: AppAssets.tshirtBlue,
         categoryId: '2',
+         rating: 4.3,
+         numberOfReviews: 80,
       ),
     ];
   }
