@@ -57,7 +57,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                       padding: EdgeInsetsGeometry.only(bottom: 14),
                       child: CartProductCard(
                         product: product,
-                        count: 1,
+                        count: product.count,
                         onClickPlus: () => _controller.incrementCount(index),
                         onClickMinus: () => _controller.decrementCount(index),
                       ),
