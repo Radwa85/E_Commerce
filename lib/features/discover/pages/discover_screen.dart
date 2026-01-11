@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../proudctDetails/product_details_screen.dart';
+
 class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
 
@@ -125,14 +127,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                     return ProductCard(
                                       product: _controller.products[index],
                                       onTap: () {
-                                        /* Navigator.push(
+                                        Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => ProductDetailsScreen(
                                               product: _controller.products[index],
                                             ),
                                           ),
-                                        );*/
+                                        );
                                       },
                                     );
                                   },

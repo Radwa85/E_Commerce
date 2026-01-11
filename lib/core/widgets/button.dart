@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../constants/app_colors.dart';
 
 class AppButton extends StatelessWidget {
@@ -6,7 +7,7 @@ class AppButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color? backgroundColor;
   final bool isOutlined;
-  final IconData? icon;
+  final Widget? icon;
   final bool iconAtEnd;
 
   const AppButton({
@@ -25,10 +26,7 @@ class AppButton extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if (icon != null && !iconAtEnd) ...[
-          Icon(icon, color: isOutlined ? AppColors.textPrimary : AppColors.textLight),
-          const SizedBox(width: 8),
-        ],
+        if (icon != null && !iconAtEnd) ...[?icon, const SizedBox(width: 8)],
         Text(
           text,
           style: TextStyle(
@@ -36,10 +34,7 @@ class AppButton extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        if (icon != null && iconAtEnd) ...[
-          const SizedBox(width: 8),
-          Icon(icon, color: isOutlined ? AppColors.textPrimary : AppColors.textLight),
-        ],
+        if (icon != null && iconAtEnd) ...[const SizedBox(width: 8), ?icon],
       ],
     );
 
@@ -48,25 +43,25 @@ class AppButton extends StatelessWidget {
       height: 50,
       child: isOutlined
           ? OutlinedButton(
-        onPressed: onPressed,
-        style: OutlinedButton.styleFrom(
-          side: const BorderSide(color: AppColors.buttonBorder),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        child: childContent,
-      )
+              onPressed: onPressed,
+              style: OutlinedButton.styleFrom(
+                side: const BorderSide(color: AppColors.buttonBorder),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: childContent,
+            )
           : TextButton(
-        onPressed: onPressed,
-        style: TextButton.styleFrom(
-          backgroundColor: backgroundColor ?? AppColors.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        child: childContent,
-      ),
+              onPressed: onPressed,
+              style: TextButton.styleFrom(
+                backgroundColor: backgroundColor ?? AppColors.primary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: childContent,
+            ),
     );
   }
 }
