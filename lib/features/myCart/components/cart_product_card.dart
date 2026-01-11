@@ -47,15 +47,31 @@ class _CartProductCardState extends State<CartProductCard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  widget.product.name,
-                  style: GoogleFonts.readexPro(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    height: 1.4,
-                    color: AppColors.textPrimary,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.product.name,
+                      style: GoogleFonts.readexPro(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        height: 1.4,
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 13,
+                      width: 13,
+                      child: SvgPicture.asset(
+                        AppAssets.iconDelete,
+                        height: 13,
+                        width: 13,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  ],
                 ),
+
                 const SizedBox(height: 1),
                 Text(
                   "Size : ${widget.product.size}",
