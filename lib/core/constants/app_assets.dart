@@ -28,4 +28,7 @@ abstract class AppAssets {
   static const String iconChevronRight = '${_iconsPath}chevron_right.svg';
   static const String iconWarning = '${_iconsPath}Warning.svg';
   static const String iconBag = '${_iconsPath}Bag.svg';
+  static const String iconPlus = '${_iconsPath}Plus.svg';
+  static const String iconMinus = '${_iconsPath}Minus.svg';
+  static const String iconArrowRight = '${_iconsPath}arrow-right.svg';
 }

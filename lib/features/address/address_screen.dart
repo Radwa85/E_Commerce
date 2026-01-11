@@ -2,14 +2,14 @@ import 'package:e_commerce/core/constants/app_colors.dart';
 import 'package:e_commerce/domain/repositories/address_repository.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/repositories/address_repository_impl.dart';
 import '../../domain/entities/address.dart';
 import 'components/address_card.dart';
 import 'components/address_screen_app_bar.dart';
 
 class AddressScreen extends StatefulWidget {
-  final AddressRepository addressRepository;
 
-  const AddressScreen({super.key, required this.addressRepository});
+  const AddressScreen({super.key});
 
   @override
   State<AddressScreen> createState() => _AddressScreenState();
@@ -18,6 +18,7 @@ class AddressScreen extends StatefulWidget {
 class _AddressScreenState extends State<AddressScreen> {
   late List<Address> addresses;
   late bool isLoading = true;
+  final AddressRepository addressRepository = AddressRepositoryImpl();
 
   @override
   void initState() {
@@ -26,7 +27,7 @@ class _AddressScreenState extends State<AddressScreen> {
   }
 
   Future<void> _loadAddresses() async {
-    addresses = await widget.addressRepository.fetchAddresses();
+    addresses = await addressRepository.fetchAddresses();
     setState(() {
       isLoading = false;
     });
